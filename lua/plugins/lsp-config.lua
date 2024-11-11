@@ -9,11 +9,9 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
-    config = function()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "ts_ls" },
-      }
-    end
+    opts = {
+      auto_install = true,
+    }
   },
   {
     "neovim/nvim-lspconfig",
@@ -27,6 +25,15 @@ return {
       })
       lspconfig.ts_ls.setup({
         capabilities = capabilities
+      })
+      lspconfig.solargraph.setup({
+        capabilities = capabilities,
+        settings = {
+          solargraph = {
+            diagnostics = true,  -- Enable RuboCop diagnostics
+            formatting = true,   -- Enable RuboCop formatting
+          }
+        }
       })
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})

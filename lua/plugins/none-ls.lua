@@ -16,7 +16,5 @@ return {
         null_ls.builtins.formatting.rubocop,
       },
     })
-
-    vim.keymap.set('n', "<space>gf", vim.lsp.buf.format({ async = true }), {})
-  end,
+   end,
 }
